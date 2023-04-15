@@ -9,10 +9,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -30,6 +29,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,108 +46,112 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    Greeting()
                 }
             }
         }
     }
 }
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-
+fun Greeting() {
     Scaffold(topBar = {
         TopAppBar(title = {
             Column() {
-                Text(text = "Senatus")
-                Text(text = "katman 5 - treachery")
+                Text(
+                    text = "Senatus",
+                    fontSize = 24.sp,
+                    style = TextStyle(fontFamily = FontFamily.SansSerif)
+                )
+                Text(
+                    text = "katman 5 - treachery",
+                    fontSize = 12.sp,
+                    style = TextStyle(fontFamily = FontFamily.SansSerif)
+                )
             }
-
-        },
-
-            actions = {
-                Surface(
-                    color = Color.Gray.copy(0.5f),
-                    modifier = Modifier.clip(RoundedCornerShape(128.dp)),
+        }, actions = {
+            Surface(
+                color = Color.Gray.copy(0.5f),
+                modifier = Modifier.clip(RoundedCornerShape(128.dp)),
+            ) {
+                Row(
                 ) {
-                    Row(
-                    ) {
-                        Box(modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
-                            Row() {
-                                Button(
-                                    onClick = { /* TODO: onclick event */ },
-                                    contentPadding = ButtonDefaults.TextButtonContentPadding,
+                    Box(modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
+                        Row() {
+                            Button(
+                                onClick = { /* TODO: onclick event */ },
+                                contentPadding = ButtonDefaults.TextButtonContentPadding,
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Start, // icon'ın sola dayalı hale getirilmesi
                                 ) {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.Start, // icon'ın sola dayalı hale getirilmesi
-                                    ) {
-                                        Icon(
-                                            Icons.Default.Favorite,
-                                            contentDescription = "TOP",
-                                            modifier = Modifier.size(12.dp)
-                                        )
-                                        Text(
-                                            text = "NEW",
-                                            fontSize = 12.sp,
-                                            maxLines = 1,
-                                            overflow = TextOverflow.Ellipsis
-                                        )
-                                    }
-                                }
-                                Spacer(modifier = Modifier.size(2.dp))
-                                Button(
-                                    onClick = { /* TODO: onclick event */ },
-                                    contentPadding = ButtonDefaults.TextButtonContentPadding,
-                                ) {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.Start, // icon'ın sola dayalı hale getirilmesi
-                                    ) {
-                                        Icon(
-                                            Icons.Default.Favorite,
-                                            contentDescription = "NEW",
-                                            modifier = Modifier.size(12.dp)
-                                        )
-                                        Text(
-                                            text = "NEW",
-                                            fontSize = 12.sp,
-                                            maxLines = 1,
-                                            overflow = TextOverflow.Ellipsis
-                                        )
-                                    }
+                                    Icon(
+                                        Icons.Default.Favorite,
+                                        contentDescription = "TOP",
+                                        modifier = Modifier.size(12.dp)
+                                    )
+                                    Text(
+                                        text = "NEW",
+                                        fontSize = 12.sp,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
                                 }
                             }
-
+                            Spacer(modifier = Modifier.size(2.dp))
+                            Button(
+                                onClick = { /* TODO: onclick event */ },
+                                contentPadding = ButtonDefaults.TextButtonContentPadding,
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Start, // icon'ın sola dayalı hale getirilmesi
+                                ) {
+                                    Icon(
+                                        Icons.Default.Favorite,
+                                        contentDescription = "NEW",
+                                        modifier = Modifier.size(12.dp)
+                                    )
+                                    Text(
+                                        text = "NEW",
+                                        fontSize = 12.sp,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                }
+                            }
                         }
+
                     }
                 }
-            })
+            }
+        })
     }, content = { innerPadding ->
-        LazyColumn(
-            contentPadding = innerPadding, verticalArrangement = Arrangement.spacedBy(8.dp)
+
+        //TODO: move to string.xml
+        val levels = listOf(
+            "Limbo", "Lust", "Gluttony", "Greed", "Anger"
+        )
+        LazyRow(
+            modifier = Modifier.padding(top = 12.dp),
+            contentPadding = innerPadding,
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            val list = (0..75).map { it.toString() }
-            items(count = list.size) {
-                Text(
-                    text = list[it],
-                    style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                )
+            items(levels.count()) {
+                Button(onClick = { /*TODO*/ }) {
+                    Text(text = levels[it])
+                }
             }
         }
     })
-
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     MclubTheme {
-        Greeting("Android")
+        Greeting()
     }
 }
