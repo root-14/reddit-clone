@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -48,11 +49,18 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Observer
 import com.mithrundeal.mclub.ui.theme.MclubTheme
+import com.mithrundeal.mclub.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MclubTheme {
                 // A surface container using the 'background' color from the theme
@@ -68,7 +76,10 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Greeting() {
+fun Greeting(mainViewModel: MainViewModel = hiltViewModel()) {
+    val lifecycleOwner = LocalLifecycleOwner.current
+    var dummy=mainViewModel
+
     Scaffold(topBar = {
         TopAppBar(title = {
             Column() {
@@ -90,8 +101,7 @@ fun Greeting() {
                         append(" ")
                         withStyle(
                             style = SpanStyle(
-                                fontWeight = FontWeight.Bold,
-                                color = Color.Red
+                                fontWeight = FontWeight.Bold, color = Color.Red
                             )
                         ) {
                             append(rank)
@@ -109,7 +119,11 @@ fun Greeting() {
                     Box(modifier = Modifier.padding(start = 4.dp, end = 4.dp)) {
                         Row() {
                             Button(
-                                onClick = { /* TODO: onclick event */ },
+                                onClick = {
+                                    mainViewModel.res.observe(
+                                        lifecycleOwner,
+                                        Observer { println("hello world") })
+                                },
                                 contentPadding = ButtonDefaults.TextButtonContentPadding,
                             ) {
                                 Row(

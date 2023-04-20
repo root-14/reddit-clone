@@ -63,15 +63,18 @@ fun SignInUp() {
                 false -> "Register"
             }
             Text(
-                text = textLabel
+                text = textLabel,
             )
-            TextField(modifier = if (screenType) {//if screen type login add padding between password textfield
-                Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 4.dp)
-            } else {
-                Modifier.fillMaxWidth()
-            }, value = "Username", onValueChange = {})
+            TextField(
+                modifier = if (screenType) {//if screen type login add padding between password textfield
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 4.dp)
+                } else {
+                    Modifier.fillMaxWidth()
+                },
+                value = "Username",
+                onValueChange = {})
             if (!screenType) Text(modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
                 fontSize = 12.sp,
                 text = buildAnnotatedString {
