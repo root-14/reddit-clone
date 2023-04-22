@@ -36,7 +36,7 @@ import com.mithrundeal.mclub.R
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun SignInUp() {
-    Box(modifier = Modifier.background(Color.Black))
+    Box(modifier = Modifier.background(Color.White))
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -55,27 +55,16 @@ fun SignInUp() {
                 contentScale = ContentScale.Fit
             )
 
-            val screenType =
-                true //true -> login false -> register TODO:set mutable var, re-draw screen as how you want to open
-
-            val textLabel = when (screenType) {
-                true -> "Login"
-                false -> "Register"
-            }
             Text(
-                text = textLabel,
+                text = "Register",
             )
             TextField(
-                modifier = if (screenType) {//if screen type login add padding between password textfield
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = 4.dp)
-                } else {
-                    Modifier.fillMaxWidth()
-                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 4.dp),
                 value = "Username",
                 onValueChange = {})
-            if (!screenType) Text(modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
+            Text(modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
                 fontSize = 12.sp,
                 text = buildAnnotatedString {
                     append("Username belirlerken Email veya telefon gibi verilinizi")
@@ -93,10 +82,10 @@ fun SignInUp() {
                 .padding(
                     top = 4.dp
                 ), onClick = { /*TODO*/ }) {
-                Text(text = textLabel)
+                Text(text = "Register")
             }
             Button(modifier = Modifier.fillMaxWidth(), onClick = { /*TODO*/ }) {
-                Text(text = textLabel)
+                Text(text = "Register")
             }
         }
     }
