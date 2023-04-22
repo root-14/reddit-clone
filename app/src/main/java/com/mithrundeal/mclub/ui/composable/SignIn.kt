@@ -28,14 +28,13 @@ import androidx.compose.ui.unit.sp
 import com.mithrundeal.mclub.R
 
 /**
- * Created by ilkay on 15,April, 2023
+ * Created by ilkay on 22,April, 2023
  */
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun SignInUp() {
+fun SignIn() {
     Box(modifier = Modifier.background(Color.White))
     Box(
         modifier = Modifier
@@ -56,7 +55,7 @@ fun SignInUp() {
             )
 
             Text(
-                text = "Register",
+                text = "Login",
             )
             TextField(
                 modifier = Modifier
@@ -64,28 +63,16 @@ fun SignInUp() {
                     .padding(bottom = 4.dp),
                 value = "Username",
                 onValueChange = {})
-            Text(modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
-                fontSize = 12.sp,
-                text = buildAnnotatedString {
-                    append("Username belirlerken Email veya telefon gibi verilinizi")
-                    withStyle(
-                        style = SpanStyle(
-                            fontWeight = FontWeight.Bold,
-                        )
-                    ) {
-                        append("kullanmayın!")
-                    }
-                })
             TextField(modifier = Modifier.fillMaxWidth(), value = "Password", onValueChange = {})
             Button(modifier = Modifier
                 .fillMaxWidth()
                 .padding(
                     top = 4.dp
                 ), onClick = { /*TODO*/ }) {
-                Text(text = "Register")
+                Text(text = "Login")
             }
             Button(modifier = Modifier.fillMaxWidth(), onClick = { /*TODO*/ }) {
-                Text(text = "Register")
+                Text(text = "some-place-holder")
             }
         }
     }
