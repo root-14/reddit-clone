@@ -8,4 +8,5 @@ class MainRepository @Inject constructor(
 ) {
     suspend fun login() = apiHelper.login()
     suspend fun register() = apiHelper.register()
+    suspend fun loadFeed()= apiHelper.loadFeed()
 }

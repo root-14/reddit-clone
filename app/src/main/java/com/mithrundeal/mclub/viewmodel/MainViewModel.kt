@@ -22,10 +22,10 @@ class MainViewModel @Inject constructor(
         get() = _res
 
     init {
-        login()
+        loadFeed()
     }
 
-    private fun login() = viewModelScope.launch {
+    private fun loadFeed() = viewModelScope.launch {
         _res.postValue(Resource.loading(null))
         mainRepository.login().let {
             if (it.isSuccessful) {

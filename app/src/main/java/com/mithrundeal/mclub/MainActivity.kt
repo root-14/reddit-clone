@@ -51,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Observer
+import com.mithrundeal.mclub.network.Status
 import com.mithrundeal.mclub.ui.theme.MclubTheme
 import com.mithrundeal.mclub.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -78,7 +79,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(mainViewModel: MainViewModel = hiltViewModel()) {
     val lifecycleOwner = LocalLifecycleOwner.current
-    var dummy=mainViewModel
 
     Scaffold(topBar = {
         TopAppBar(title = {
@@ -120,9 +120,21 @@ fun Greeting(mainViewModel: MainViewModel = hiltViewModel()) {
                         Row() {
                             Button(
                                 onClick = {
-                                    mainViewModel.res.observe(
-                                        lifecycleOwner,
-                                        Observer { println("hello world") })
+                                    mainViewModel.res.observe(lifecycleOwner, Observer {
+                                        when (it.status) {
+                                            Status.SUCCESS -> {
+                                                println("status sucess ${it.status}")
+                                            }
+
+                                            Status.LOADING -> {
+                                                "status load ${it.status}"
+                                            }
+
+                                            Status.ERROR -> {
+                                                "status error ${it.status}"
+                                            }
+                                        }
+                                    })
                                 },
                                 contentPadding = ButtonDefaults.TextButtonContentPadding,
                             ) {
