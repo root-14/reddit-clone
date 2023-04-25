@@ -7,10 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.mithrundeal.mclub.ui.composable.Greeting
 import com.mithrundeal.mclub.ui.composable.SignIn
 import com.mithrundeal.mclub.ui.composable.SignUp
-import com.mithrundeal.mclub.ui.composable.onboarding.OnboardingScreen
+import com.mithrundeal.mclub.ui.composable.onboarding.OnboardScreen
 import com.mithrundeal.mclub.ui.theme.MclubTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +27,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     //Greeting()
 
-                    OnboardingScreen(onboardingPages = listOf(
+                    OnboardScreen(onboardingPages = listOf(
                         { SignIn() },
                         { SignUp() },
                         { SignIn() }

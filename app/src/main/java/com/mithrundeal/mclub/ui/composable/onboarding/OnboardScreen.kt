@@ -25,14 +25,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.mithrundeal.mclub.ui.composable.Utility
 
-//@Preview(showBackground = true, showSystemUi = true)
-
+//preview is not suitable because it is data from property
 @Composable
-fun OnboardingScreen(onboardingPages: List<@Composable () -> Unit>) {
+fun OnboardScreen(onboardingPages: List<@Composable () -> Unit>) {
     var currentPage by remember { mutableStateOf(0) }
     var offsetX by remember { mutableStateOf(0f) }
 
@@ -46,17 +44,15 @@ fun OnboardingScreen(onboardingPages: List<@Composable () -> Unit>) {
                 },
                 onDragStarted = { onDragStarted -> offsetX += onDragStarted.x },
                 onDragStopped = {
-                    var isDraggedLeftToRight = offsetX <= Utility.DRAG_THRESHOLD
+                    val isDraggedLeftToRight = offsetX <= Utility.DRAG_THRESHOLD
 
                     if (isDraggedLeftToRight) {
                         if (currentPage > 0) {
                             currentPage--
-                            println("current page is $currentPage")
                         }
                     } else {
                         if (currentPage < onboardingPages.size - 1) {
                             currentPage++
-                            println("current page is $currentPage")
                         }
                     }
                     offsetX = 0f
