@@ -28,15 +28,14 @@ import androidx.compose.ui.unit.sp
 import com.mithrundeal.mclub.R
 
 /**
- * Created by ilkay on 15,April, 2023
+ * Created by ilkay on 22,April, 2023
  */
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun SignInUp() {
-    Box(modifier = Modifier.background(Color.Black))
+fun SignIn() {
+    Box(modifier = Modifier.background(Color.White))
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -55,45 +54,25 @@ fun SignInUp() {
                 contentScale = ContentScale.Fit
             )
 
-            val screenType =
-                true //true -> login false -> register TODO:set mutable var, re-draw screen as how you want to open
-
-            val textLabel = when (screenType) {
-                true -> "Login"
-                false -> "Register"
-            }
             Text(
-                text = textLabel
+                text = "Login",
             )
-            TextField(modifier = if (screenType) {//if screen type login add padding between password textfield
-                Modifier
+            TextField(
+                modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 4.dp)
-            } else {
-                Modifier.fillMaxWidth()
-            }, value = "Username", onValueChange = {})
-            if (!screenType) Text(modifier = Modifier.padding(top = 4.dp, bottom = 4.dp),
-                fontSize = 12.sp,
-                text = buildAnnotatedString {
-                    append("Username belirlerken Email veya telefon gibi verilinizi")
-                    withStyle(
-                        style = SpanStyle(
-                            fontWeight = FontWeight.Bold,
-                        )
-                    ) {
-                        append("kullanmayın!")
-                    }
-                })
+                    .padding(bottom = 4.dp),
+                value = "Username",
+                onValueChange = {})
             TextField(modifier = Modifier.fillMaxWidth(), value = "Password", onValueChange = {})
             Button(modifier = Modifier
                 .fillMaxWidth()
                 .padding(
                     top = 4.dp
                 ), onClick = { /*TODO*/ }) {
-                Text(text = textLabel)
+                Text(text = "Login")
             }
             Button(modifier = Modifier.fillMaxWidth(), onClick = { /*TODO*/ }) {
-                Text(text = textLabel)
+                Text(text = "some-place-holder")
             }
         }
     }
