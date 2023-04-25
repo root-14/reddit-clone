@@ -2,6 +2,9 @@ package com.mithrundeal.mclub.ui.composable.onboarding
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,14 +25,45 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import com.mithrundeal.mclub.ui.composable.Utility
 
 //@Preview(showBackground = true, showSystemUi = true)
 
 @Composable
 fun OnboardingScreen(onboardingPages: List<@Composable () -> Unit>) {
     var currentPage by remember { mutableStateOf(0) }
-    Column(modifier = Modifier.fillMaxSize()) {
+    var offsetX by remember { mutableStateOf(0f) }
+
+    Column(//TODO:improve gesture sensitivity
+        modifier = Modifier
+            .fillMaxSize()
+            .draggable(
+                state = rememberDraggableState { delta ->
+                    //offsetX += delta
+                    //println("state -> $offsetX")
+                },
+                onDragStarted = { onDragStarted -> offsetX += onDragStarted.x },
+                onDragStopped = {
+                    var isDraggedLeftToRight = offsetX <= Utility.DRAG_THRESHOLD
+
+                    if (isDraggedLeftToRight) {
+                        if (currentPage > 0) {
+                            currentPage--
+                            println("current page is $currentPage")
+                        }
+                    } else {
+                        if (currentPage < onboardingPages.size - 1) {
+                            currentPage++
+                            println("current page is $currentPage")
+                        }
+                    }
+                    offsetX = 0f
+                },
+                orientation = Orientation.Vertical
+            )
+    ) {
         Box(modifier = Modifier.weight(1f)) {
             onboardingPages[currentPage]()
         }
@@ -41,8 +75,7 @@ fun OnboardingScreen(onboardingPages: List<@Composable () -> Unit>) {
                 } else {
                     // onboarding tamamlandı, bir sonraki ekrana geç
                 }
-            },
-            modifier = Modifier
+            }, modifier = Modifier
                 .align(Alignment.End)
                 .padding(16.dp)
         ) {

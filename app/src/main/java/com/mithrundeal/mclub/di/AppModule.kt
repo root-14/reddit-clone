@@ -1,5 +1,6 @@
 package com.mithrundeal.mclub.di
 
+import androidx.compose.ui.platform.LocalConfiguration
 import com.mithrundeal.mclub.BuildConfig
 import com.mithrundeal.mclub.network.Utility
 import com.mithrundeal.mclub.network.api.ApiHelper
