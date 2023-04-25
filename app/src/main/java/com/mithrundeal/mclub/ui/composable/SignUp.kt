@@ -35,8 +35,8 @@ import com.mithrundeal.mclub.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-fun SignInUp() {
-    Box(modifier = Modifier.background(Color.White))
+fun SignUp() {
+    Box(modifier = Modifier.background(Color.LightGray))
     Box(
         modifier = Modifier
             .fillMaxWidth()

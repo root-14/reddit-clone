@@ -35,7 +35,7 @@ import com.mithrundeal.mclub.R
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun SignIn() {
-    Box(modifier = Modifier.background(Color.White))
+    Box(modifier = Modifier.background(Color.LightGray))
     Box(
         modifier = Modifier
             .fillMaxWidth()
