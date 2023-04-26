@@ -18,32 +18,32 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mithrundeal.mclub.R
 
-/**
- * Created by ilkay on 15,April, 2023
- */
-
-
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun InfoScreen() {
-    val rules = listOf(
+fun InfoComposable() {
+    val infos = listOf(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         "Fusce at erat finibus tortor suscipit congue vitae vitae dui.",
         "Aliquam laoreet molestie lectus, et vehicula velit iaculis at.",
         "Cras pulvinar ullamcorper ullamcorper.",
         "Aliquam vitae elementum ante.",
-        "Etiam neque lacus, sollicitudin sed mi id, porttitor mattis odio."
-    )
+        "Etiam neque lacus, sollicitudin sed mi id, porttitor mattis odio.",
+        "Phasellus non nibh consectetur, tincidunt mauris ac, feugiat lacus. Aenean nec fringilla quam, ac aliquet lectus.",
+        "Fusce eget turpis iaculis, porttitor ante non, tincidunt risus.",
+
+        )
 
     Box(modifier = Modifier.background(Color.LightGray))
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Top,
+        modifier = Modifier.padding(32.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.place_holder_sign_screen),
@@ -54,8 +54,12 @@ fun InfoScreen() {
         )
         Spacer(modifier = Modifier.height(32.dp))
         Text(text = "Title", fontWeight = FontWeight.Bold, fontSize = 32.sp)
-        rules.forEachIndexed { index, rule ->
-            Text(text = "${index + 1} - $rule", modifier = Modifier.padding(top = 12.dp))
+        infos.forEachIndexed { index, rule ->
+            Text(
+                text = rule,
+                modifier = Modifier.padding(top = 12.dp),
+                textAlign = TextAlign.Center
+            )
         }
     }
 }

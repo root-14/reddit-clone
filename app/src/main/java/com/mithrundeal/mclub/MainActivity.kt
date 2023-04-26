@@ -8,8 +8,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.mithrundeal.mclub.ui.composable.SignIn
-import com.mithrundeal.mclub.ui.composable.SignUp
+import com.mithrundeal.mclub.ui.composable.onboarding.InfoComposable
 import com.mithrundeal.mclub.ui.composable.onboarding.OnboardScreen
+import com.mithrundeal.mclub.ui.composable.onboarding.RuleComposable
 import com.mithrundeal.mclub.ui.theme.MclubTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,8 +29,8 @@ class MainActivity : ComponentActivity() {
                     //Greeting()
 
                     OnboardScreen(onboardingPages = listOf(
-                        { SignIn() },
-                        { SignUp() },
+                        { RuleComposable() },
+                        { InfoComposable() },
                         { SignIn() }
                     ))
                 }
