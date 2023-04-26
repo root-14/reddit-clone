@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.mithrundeal.mclub.ui.composable.Greeting
+import com.mithrundeal.mclub.ui.composable.SignIn
+import com.mithrundeal.mclub.ui.composable.onboarding.InfoComposable
+import com.mithrundeal.mclub.ui.composable.onboarding.OnboardScreen
+import com.mithrundeal.mclub.ui.composable.onboarding.RuleComposable
 import com.mithrundeal.mclub.ui.theme.MclubTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,7 +26,13 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting()
+                    //Greeting()
+
+                    OnboardScreen(onboardingPages = listOf(
+                        { RuleComposable() },
+                        { InfoComposable() },
+                        { SignIn() }
+                    ))
                 }
             }
         }
