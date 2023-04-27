@@ -26,11 +26,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.mithrundeal.mclub.ui.composable.Utility
 
 //preview is not suitable because it is data from property
 @Composable
-fun OnboardScreen(onboardingPages: List<@Composable () -> Unit>) {
+fun OnboardScreen(onboardingPages: List<@Composable () -> Unit>, navController: NavController) {
     var currentPage by remember { mutableStateOf(0) }
     var offsetX by remember { mutableStateOf(0f) }
 
@@ -68,8 +70,8 @@ fun OnboardScreen(onboardingPages: List<@Composable () -> Unit>) {
             onClick = {
                 if (currentPage < onboardingPages.lastIndex) {
                     currentPage++
-                } else {
-                    // onboarding tamamlandı, bir sonraki ekrana geç
+                } else {//TODO: save second opening shared pref
+                    navController.navigate("greeting")
                 }
             }, modifier = Modifier
                 .align(Alignment.End)
