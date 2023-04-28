@@ -32,9 +32,9 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
                 ) {
-
                     val navController = rememberNavController()
 
+                    //TODO: add anim(AnimatedVisibility) between composable
                     NavHost(navController = navController, startDestination = "onboarding_screen") {
                         composable("onboarding_screen") {
                             OnboardScreen(navController = navController, onboardingPages = listOf(
