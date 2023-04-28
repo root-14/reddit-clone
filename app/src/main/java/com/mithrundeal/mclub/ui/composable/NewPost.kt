@@ -45,7 +45,8 @@ fun NewPost() {
                 text = "New Post",
                 fontSize = 24.sp,
                 style = TextStyle(fontFamily = FontFamily.SansSerif),
-                color = Color.White
+                color = Color.White,
+                modifier = Modifier.padding(top = 12.dp, start = 8.dp)
             )
 
             val levelWithNumber = "5";
@@ -67,7 +68,8 @@ fun NewPost() {
                     }
                 },
                 fontSize = 12.sp,
-                style = TextStyle(fontFamily = FontFamily.SansSerif, color = Color.Red)
+                style = TextStyle(fontFamily = FontFamily.SansSerif, color = Color.Red),
+                modifier = Modifier.padding(start = 8.dp)
             )
             Text(
                 modifier = Modifier.padding(top = 12.dp, start = 8.dp),
@@ -77,7 +79,7 @@ fun NewPost() {
             )
 
             TextField(
-                value = "",
+                value = "Say some...",
                 onValueChange = {},
                 modifier = Modifier
                     .fillMaxWidth()
@@ -86,7 +88,12 @@ fun NewPost() {
                 label = { },
             )
             val painter: Painter = painterResource(id = R.drawable.place_holder_sign_screen)
-            Button(onClick = { /*TODO*/ }, modifier = Modifier.align(Alignment.End)) {
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(top = 8.dp)
+            ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         painter = painter,
@@ -97,7 +104,7 @@ fun NewPost() {
                     Text(text = "Add Image", modifier = Modifier.padding(start = 4.dp))
                 }
             }
-            Button(onClick = { /*TODO*/ }) {
+            Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(top = 12.dp)) {
                 Text(
                     text = "Post",
                     modifier = Modifier
